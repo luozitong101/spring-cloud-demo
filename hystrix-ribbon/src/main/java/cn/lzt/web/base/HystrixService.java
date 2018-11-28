@@ -18,14 +18,15 @@ public class HystrixService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @HystrixCommand(fallbackMethod = "error")
+    @HystrixCommand(fallbackMethod = "error1")
     public String computeNum(@RequestParam Integer a,@RequestParam Integer b){
 
        return restTemplate.getForObject("http://service-B/add?a="+a+"&b="+b,String.class);
     }
 
-    public String error(@RequestParam Integer a,@RequestParam Integer b){
-        LOGGER.info("异常发生进入fallback 方法");
+    public String error1(@RequestParam Integer a,@RequestParam Integer b){
+//        LOGGER.info("异常:"+throwable.getMessage());
+        LOGGER.info("调用B服务失败");
         return "出错了,服务被降级,服务快速失败";
     }
 }

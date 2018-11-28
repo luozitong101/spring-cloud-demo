@@ -4,11 +4,12 @@ spring:
   application:
     name: hystrix
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://localhost:7070/eureka/
+      defaultZone: http://192.168.25.128:7070/eureka/
 
 ribbon:
   eureka:
     enabled: true
-    
